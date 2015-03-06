@@ -24,17 +24,14 @@ public class BallDemo
 
     /**
      * Simulate a number of bouncing balls
-     * @param num NUmber of bouncing balls to simulate
+     * @param num Number of bouncing balls to simulate
      */
     public void bounce(int num)
     {
         int ground = 400;   // position of the ground line
-
         myCanvas.setVisible(true);
-
         // draw the ground
         myCanvas.drawLine(50, ground, 550, ground);
-
         // crate and show the balls
         int index = 0;
         // Creamos los random para generar cada uno de los datos
@@ -60,6 +57,50 @@ public class BallDemo
             for(int i = 0;i < pelotas.size();i++)
             {
                 pelotas.get(i).move();
+                // stop once ball has travelled a certain distance on x axis
+                if (pelotas.get(i).getXPosition() >= 550)
+                {
+                    finished = true;
+                }
+            }
+        }
+    }
+    
+    /**
+     * Simulate a number of bouncing balls
+     * @param num Number of bouncing balls to simulate
+     */
+    public void boxBounce(int num)
+    {
+        int ground = 400;   // position of the ground line
+        myCanvas.setVisible(true);
+        // draw the ground
+        myCanvas.fillRectangle(300, 240, 150, 80);
+        // crate and show the balls
+        int index = 0;
+        // Creamos los random para generar cada uno de los datos
+        Random rand = new Random();
+        int xPo = 0;
+        int yPo = 0;
+        int dia = 0;
+        ArrayList<BoxBall> pelotas = new ArrayList<BoxBall>();
+        // Creamos las pelotas y las añadimos a un random
+        while (index < num)
+        {
+            Color col = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+            xPo = rand.nextInt(400);
+            yPo = rand.nextInt(20);
+            dia = rand.nextInt(40) + 10;
+            pelotas.add(new BoxBall(xPo, yPo, dia, col, ground, myCanvas));
+            index++;
+        }
+        // make them bounce
+        boolean finished =  false;
+        while(!finished) {
+            myCanvas.wait(50);           // small delay
+            for(int i = 0;i < pelotas.size();i++)
+            {
+                pelotas.get(i).moveLeft();
                 // stop once ball has travelled a certain distance on x axis
                 if (pelotas.get(i).getXPosition() >= 550)
                 {

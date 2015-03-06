@@ -1,8 +1,9 @@
 import java.awt.*;
 import java.awt.geom.*;
+import java.util.Random;
 
 /**
- * Class BouncingBall - a graphical ball that observes the effect of gravity. The ball
+ * Class BoxBall - a graphical ball that observes the effect of gravity. The ball
  * has the ability to move. Details of movement are determined by the ball itself. It
  * will fall downwards, accelerating with time due to the effect of gravity, and bounce
  * upward again when hitting the ground.
@@ -79,7 +80,30 @@ public class BoxBall
         // compute new position
         ySpeed += GRAVITY;
         yPosition += ySpeed;
-        xPosition +=2;
+        xPosition +=1;
+
+        // check if it has hit the ground
+        if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
+            yPosition = (int)(groundPosition - diameter);
+            ySpeed = -ySpeed + ballDegradation; 
+        }
+
+        // draw again at new position
+        draw();
+    }  
+    
+    /**
+     * Move to the left this ball according to its position and speed and redraw.
+     **/
+    public void moveLeft()
+    {
+        // remove from canvas at the current position
+        erase();
+            
+        // compute new position
+        ySpeed += GRAVITY;
+        yPosition += ySpeed;
+        xPosition -=1;
 
         // check if it has hit the ground
         if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
