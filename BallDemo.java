@@ -38,14 +38,19 @@ public class BallDemo
         // crate and show the balls
         int index = 0;
         // Creamos los random para generar cada uno de los datos
-        Random xPo = new Random();
-        Random yPo = new Random();
-        Random color = new Random();
-        Random dia = new Random();
+        Random rand = new Random();
+        int xPo = 0;
+        int yPo = 0;
+        int dia = 0;
         ArrayList<BouncingBall> pelotas = new ArrayList<BouncingBall>();
         while (index < num)
         {
-            pelotas.add(new BouncingBall(xPo.nextInt(50) + 200,yPo.nextInt (50), dia.nextInt(20) + 10, Color.color(color.nextInt(256), color.nextInt(256), color.nextInt(256)), ground, myCanvas));
+            Color col = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+            xPo = rand.nextInt(50) + 200;
+            yPo = rand.nextInt(50);
+            dia = rand.nextInt(20) + 10;
+            pelotas.add(new BouncingBall(xPo, yPo, dia, col, ground, myCanvas));
+            index++;
         }
         // make them bounce
         boolean finished =  false;
