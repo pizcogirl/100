@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Class BallDemo - a short demonstration showing animation with the 
@@ -34,24 +36,31 @@ public class BallDemo
         myCanvas.drawLine(50, ground, 550, ground);
 
         // crate and show the balls
-        for(int i = 0; i < num; i++)
+        int index = 0;
+        // Creamos los random para generar cada uno de los datos
+        Random xPo = new Random();
+        Random yPo = new Random();
+        Random color = new Random();
+        Random dia = new Random();
+        ArrayList<BouncingBall> pelotas = new ArrayList<BouncingBall>();
+        while (index < num)
         {
-            BouncingBall ball = new BouncingBall(50, 50, 16, Color.BLUE, ground, myCanvas);
-            ball.draw();
-            BouncingBall ball2 = new BouncingBall(70, 80, 20, Color.RED, ground, myCanvas);
-            ball2.draw();
-
-            // make them bounce
-            boolean finished =  false;
-            while(!finished) {
-                myCanvas.wait(50);           // small delay
-                ball.move();
-                ball2.move();
-                // stop once ball has travelled a certain distance on x axis
-                if(ball.getXPosition() >= 550 || ball2.getXPosition() >= 550) {
-                    finished = true;
-                }
-            }
+            pelotas.add(new BouncingBall(xPo.nextInt(50) + 200,yPo.nextInt (50), dia.nextInt(20) + 10, Color.color(color.nextInt(256), color.nextInt(256), color.nextInt(256)), ground, myCanvas));
         }
+        // make them bounce
+        boolean finished =  false;
+        while(!finished) {
+            myCanvas.wait(50);           // small delay
+            for(int i = 0;i < pelotas.size();i++)
+            {
+                pelotas.get(i).move();
+            }
+
+//             // stop once ball has travelled a certain distance on x axis
+//             if(ball.getXPosition() >= 550 || ball2.getXPosition() >= 550) {
+//                 finished = true;
+//             }
+        }
+
     }
 }
