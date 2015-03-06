@@ -87,10 +87,9 @@ public class BoxBall
             yPosition += ySpeed;
             xPosition +=1;
 
-            // check if it has hit the ground
-            if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
-                yPosition = (int)(groundPosition - diameter);
-                ySpeed = -ySpeed + ballDegradation; 
+            // check if it has hit the rectangle
+            if((yPosition < 50) ||(yPosition > 450) || (xPosition < 50) || (xPosition > 450)) {
+                dirIzquierda = !dirIzquierda;
             }
 
             // draw again at new position
@@ -106,10 +105,9 @@ public class BoxBall
             yPosition += ySpeed;
             xPosition -=1;
 
-            // check if it has hit the ground
-            if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
-                yPosition = (int)(groundPosition - diameter);
-                ySpeed = -ySpeed + ballDegradation; 
+            // check if it has hit the rectangle
+            if((yPosition < 50) ||(yPosition > 450) || (xPosition < 50) || (xPosition > 450)) {
+                dirIzquierda = !dirIzquierda;
             }
 
             // draw again at new position

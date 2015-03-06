@@ -65,7 +65,7 @@ public class BallDemo
             }
         }
     }
-    
+
     /**
      * Simulate a number of bouncing balls
      * @param num Number of bouncing balls to simulate
@@ -75,7 +75,10 @@ public class BallDemo
         int ground = 400;   // position of the ground line
         myCanvas.setVisible(true);
         // draw the ground
-        myCanvas.fillRectangle(300, 240, 150, 80);
+        myCanvas.drawLine(50, 50, 450, 50);
+        myCanvas.drawLine(450, 50, 450, 450);
+        myCanvas.drawLine(450, 450, 50, 450);
+        myCanvas.drawLine(50, 450, 50, 50);
         // crate and show the balls
         int index = 0;
         // Creamos los random para generar cada uno de los datos
