@@ -30,6 +30,7 @@ public class BoxBall
     private final int groundPosition;      // y position of ground
     private Canvas canvas;
     private int ySpeed = 1;                // initial downward speed
+    private boolean dirIzquierda;
 
     /**
      * Constructor for objects of class BouncingBall
@@ -40,9 +41,10 @@ public class BoxBall
      * @param ballColor  the color of the ball
      * @param groundPos  the position of the ground (where the wall will bounce)
      * @param drawingCanvas  the canvas to draw this ball on
+     * @param dirección Sera true si va a la izquierda, false si va a la derecha
      */
     public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor,
-                        int groundPos, Canvas drawingCanvas)
+    int groundPos, Canvas drawingCanvas, boolean direccion)
     {
         xPosition = xPos;
         yPosition = yPos;
@@ -50,6 +52,7 @@ public class BoxBall
         diameter = ballDiameter;
         groundPosition = groundPos;
         canvas = drawingCanvas;
+        dirIzquierda = direccion;
     }
 
     /**
@@ -74,46 +77,45 @@ public class BoxBall
      **/
     public void move()
     {
-        // remove from canvas at the current position
-        erase();
-            
-        // compute new position
-        ySpeed += GRAVITY;
-        yPosition += ySpeed;
-        xPosition +=1;
+        if(!dirIzquierda)
+        {
+            // remove from canvas at the current position
+            erase();
 
-        // check if it has hit the ground
-        if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
-            yPosition = (int)(groundPosition - diameter);
-            ySpeed = -ySpeed + ballDegradation; 
+            // compute new position
+            ySpeed += GRAVITY;
+            yPosition += ySpeed;
+            xPosition +=1;
+
+            // check if it has hit the ground
+            if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
+                yPosition = (int)(groundPosition - diameter);
+                ySpeed = -ySpeed + ballDegradation; 
+            }
+
+            // draw again at new position
+            draw();
         }
+        else
+        {
+            // remove from canvas at the current position
+            erase();
 
-        // draw again at new position
-        draw();
+            // compute new position
+            ySpeed += GRAVITY;
+            yPosition += ySpeed;
+            xPosition -=1;
+
+            // check if it has hit the ground
+            if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
+                yPosition = (int)(groundPosition - diameter);
+                ySpeed = -ySpeed + ballDegradation; 
+            }
+
+            // draw again at new position
+            draw();
+        }
     }  
-    
-    /**
-     * Move to the left this ball according to its position and speed and redraw.
-     **/
-    public void moveLeft()
-    {
-        // remove from canvas at the current position
-        erase();
-            
-        // compute new position
-        ySpeed += GRAVITY;
-        yPosition += ySpeed;
-        xPosition -=1;
-
-        // check if it has hit the ground
-        if(yPosition >= (groundPosition - diameter) && ySpeed > 0) {
-            yPosition = (int)(groundPosition - diameter);
-            ySpeed = -ySpeed + ballDegradation; 
-        }
-
-        // draw again at new position
-        draw();
-    }    
 
     /**
      * return the horizontal position of this ball

@@ -83,6 +83,7 @@ public class BallDemo
         int xPo = 0;
         int yPo = 0;
         int dia = 0;
+        boolean direccion;
         ArrayList<BoxBall> pelotas = new ArrayList<BoxBall>();
         // Creamos las pelotas y las añadimos a un random
         while (index < num)
@@ -91,7 +92,8 @@ public class BallDemo
             xPo = rand.nextInt(400);
             yPo = rand.nextInt(20);
             dia = rand.nextInt(40) + 10;
-            pelotas.add(new BoxBall(xPo, yPo, dia, col, ground, myCanvas));
+            direccion = rand.nextBoolean();
+            pelotas.add(new BoxBall(xPo, yPo, dia, col, ground, myCanvas, direccion));
             index++;
         }
         // make them bounce
@@ -100,7 +102,7 @@ public class BallDemo
             myCanvas.wait(50);           // small delay
             for(int i = 0;i < pelotas.size();i++)
             {
-                pelotas.get(i).moveLeft();
+                pelotas.get(i).move();
                 // stop once ball has travelled a certain distance on x axis
                 if (pelotas.get(i).getXPosition() >= 550)
                 {
