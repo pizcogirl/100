@@ -31,6 +31,7 @@ public class BoxBall
     private Canvas canvas;
     private int ySpeed = 1;                // initial downward speed
     private boolean dirIzquierda;
+    private boolean dirArriba;
 
     /**
      * Constructor for objects of class BouncingBall
@@ -53,6 +54,7 @@ public class BoxBall
         groundPosition = groundPos;
         canvas = drawingCanvas;
         dirIzquierda = direccion;
+        dirArriba = false;
     }
 
     /**
@@ -77,42 +79,37 @@ public class BoxBall
      **/
     public void move()
     {
-        if(!dirIzquierda)
-        {
-            // remove from canvas at the current position
-            erase();
 
-            // compute new position
-            ySpeed += GRAVITY;
+        // remove from canvas at the current position
+        erase();
+
+        // compute new position
+        if(dirArriba){
             yPosition += ySpeed;
-            xPosition +=1;
-
-            // check if it has hit the rectangle
-            if((yPosition < 50) ||(yPosition > 450) || (xPosition < 50) || (xPosition > 450)) {
-                dirIzquierda = !dirIzquierda;
-            }
-
-            // draw again at new position
-            draw();
         }
         else
         {
-            // remove from canvas at the current position
-            erase();
-
-            // compute new position
-            ySpeed += GRAVITY;
-            yPosition += ySpeed;
-            xPosition -=1;
-
-            // check if it has hit the rectangle
-            if((yPosition < 50) ||(yPosition > 450) || (xPosition < 50) || (xPosition > 450)) {
-                dirIzquierda = !dirIzquierda;
-            }
-
-            // draw again at new position
-            draw();
+            yPosition -= ySpeed;
         }
+        if(!dirIzquierda)
+        {
+            xPosition +=1;
+        }
+        else
+        {
+            xPosition -=1;
+        }
+
+        // check if it has hit the rectangle
+        if((xPosition < (50 + diameter)) || (xPosition > (450 - diameter))) {
+            dirIzquierda = !dirIzquierda;
+        }
+        if((yPosition < (50 + diameter)) ||(yPosition > (450 - diameter))){
+            dirArriba = !dirArriba;
+        }
+
+        // draw again at new position
+        draw();
     }  
 
     /**
