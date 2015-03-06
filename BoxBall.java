@@ -104,7 +104,7 @@ public class BoxBall
         if((xPosition < (50 + diameter)) || (xPosition > (450 - diameter))) {
             dirIzquierda = !dirIzquierda;
         }
-        if((yPosition < (50 + diameter)) ||(yPosition > (450 - diameter))){
+        if((yPosition < (50 + diameter)) || (yPosition > (450 - diameter))){
             dirArriba = !dirArriba;
         }
 

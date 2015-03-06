@@ -92,8 +92,8 @@ public class BallDemo
         while (index < num)
         {
             Color col = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
-            xPo = rand.nextInt(400) + 50;
-            yPo = rand.nextInt(200) + 50;
+            xPo = rand.nextInt(300) + 80;
+            yPo = rand.nextInt(200) + 80;
             dia = rand.nextInt(40) + 10;
             direccion = rand.nextBoolean();
             pelotas.add(new BoxBall(xPo, yPo, dia, col, ground, myCanvas, direccion));
