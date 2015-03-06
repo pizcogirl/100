@@ -101,10 +101,10 @@ public class BoxBall
         }
 
         // check if it has hit the rectangle
-        if((xPosition < (50 + diameter)) || (xPosition > (450 - diameter))) {
+        if(((xPosition <= 50) || ((xPosition  >= 450 - diameter)))) {
             dirIzquierda = !dirIzquierda;
         }
-        if((yPosition < (50 + diameter)) || (yPosition > (450 - diameter))){
+        if(((yPosition <= 50)) || ((yPosition  >= 450- diameter))){
             dirArriba = !dirArriba;
         }
 

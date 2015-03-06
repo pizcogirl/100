@@ -106,11 +106,6 @@ public class BallDemo
             for(int i = 0;i < pelotas.size();i++)
             {
                 pelotas.get(i).move();
-                // stop once ball has travelled a certain distance on x axis
-                if (pelotas.get(i).getXPosition() >= 550)
-                {
-                    finished = true;
-                }
             }
 
         }
