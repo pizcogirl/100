@@ -43,11 +43,12 @@ public class BallDemo
         int yPo = 0;
         int dia = 0;
         ArrayList<BouncingBall> pelotas = new ArrayList<BouncingBall>();
+        // Creamos las pelotas y las añadimos a un random
         while (index < num)
         {
             Color col = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
-            xPo = rand.nextInt(50) + 200;
-            yPo = rand.nextInt(50);
+            xPo = rand.nextInt(150) + 200;
+            yPo = rand.nextInt(150);
             dia = rand.nextInt(20) + 10;
             pelotas.add(new BouncingBall(xPo, yPo, dia, col, ground, myCanvas));
             index++;
@@ -59,13 +60,13 @@ public class BallDemo
             for(int i = 0;i < pelotas.size();i++)
             {
                 pelotas.get(i).move();
+                // stop once ball has travelled a certain distance on x axis
+                if (pelotas.get(i).getXPosition() >= 550)
+                {
+                    finished = true;
+                }
             }
 
-//             // stop once ball has travelled a certain distance on x axis
-//             if(ball.getXPosition() >= 550 || ball2.getXPosition() >= 550) {
-//                 finished = true;
-//             }
         }
-
     }
 }
